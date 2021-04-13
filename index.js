@@ -14,6 +14,7 @@ module.exports = {
     "xo/esnext",
     "xo/browser",
     "react-app",
+    "plugin:sonarjs/recommended",
     "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
@@ -50,4 +51,12 @@ module.exports = {
     "unicorn/consistent-function-scoping": "off",
     "unicorn/no-useless-undefined": "off",
   },
+  overrides: [
+    {
+      files: ["*.tsx", "*.jsx"],
+      rules: {
+        "sonarjs/cognitive-complexity": ["error", 37],
+      },
+    },
+  ],
 };
