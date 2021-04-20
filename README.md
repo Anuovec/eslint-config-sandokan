@@ -2,6 +2,8 @@
 
 Eslint opinionated rules for react projects.
 
+![Sandokan](sandokan.jpg)
+
 ## Usage
 
 - If you don't have ESLint yet configured for your project, follow [these instructions](https://github.com/eslint/eslint#installation-and-usage).
