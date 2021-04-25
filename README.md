@@ -28,3 +28,4 @@ npm install eslint-plugin-sandokan -g         # or install globally
 - unicorn/no-null
 - unicorn/no-useless-undefined
 - unicorn/no-array-callback-reference
+- cyclomatic and cognitive complexity counting react component
