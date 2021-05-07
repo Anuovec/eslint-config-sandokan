@@ -29,3 +29,5 @@ npm install eslint-plugin-sandokan -g         # or install globally
 - unicorn/no-useless-undefined
 - unicorn/no-array-callback-reference
 - cyclomatic and cognitive complexity counting react component
+- unicorn/prefer-node-protocol re-enable when node 16 more popular
+- unicorn/prefer-module re-enable when js modules more popular

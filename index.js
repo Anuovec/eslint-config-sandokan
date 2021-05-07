@@ -30,7 +30,12 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "no-async-promise-executor": "error",
     "no-redeclare": "off",
-    "prettier/prettier": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react/self-closing-comp": [
       "error",
@@ -50,6 +55,8 @@ module.exports = {
     "unicorn/no-null": "off",
     "unicorn/consistent-function-scoping": "off",
     "unicorn/no-useless-undefined": "off",
+    "unicorn/prefer-node-protocol": "off",
+    "unicorn/prefer-module": "off",
   },
   overrides: [
     {
