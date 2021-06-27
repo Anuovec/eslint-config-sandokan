@@ -22,6 +22,11 @@ npm install eslint-plugin-sandokan -g         # or install globally
 }
 ```
 
+## Testing config
+
+The configuration is made for Jest and Testing Library.
+it is applied to all files that ends with `.test.` or `.spec.`.
+
 ## TODO
 
 - unicorn/filename-case

@@ -16,6 +16,7 @@ module.exports = {
     "react-app",
     "plugin:sonarjs/recommended",
     "plugin:prettier/recommended",
+    "plugin:testing-library/react"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -64,6 +65,10 @@ module.exports = {
       rules: {
         "sonarjs/cognitive-complexity": ["error", 37],
       },
+    },
+    {
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
     },
   ],
 };
