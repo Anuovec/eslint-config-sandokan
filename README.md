@@ -1,6 +1,10 @@
 # eslint-plugin-sandokan
 
-Eslint opinionated rules for react projects.
+Eslint opinionated configuration for react projects, that use:
+
+- React with hooks or are in process of refactoring to hooks
+- Typescript
+- Jest with Testing library for unit, integration testing and UI interaction testing
 
 ![Sandokan](sandokan.jpg)
 
@@ -32,7 +36,7 @@ it is applied to all files that ends with `.test.` or `.spec.`.
 - unicorn/filename-case
 - unicorn/no-null
 - unicorn/no-useless-undefined
-- unicorn/no-array-callback-reference
+- unicorn/no-array-callback-reference -> a lot of false positives
 - cyclomatic and cognitive complexity counting react component
 - unicorn/prefer-node-protocol re-enable when node 16 more popular
 - unicorn/prefer-module re-enable when js modules more popular
