@@ -37,6 +37,5 @@ it is applied to all files that ends with `.test.` or `.spec.`.
 - unicorn/no-null
 - unicorn/no-useless-undefined
 - unicorn/no-array-callback-reference -> a lot of false positives
-- cyclomatic and cognitive complexity counting react component
 - unicorn/prefer-node-protocol re-enable when node 16 more popular
 - unicorn/prefer-module re-enable when js modules more popular

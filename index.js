@@ -302,6 +302,8 @@ module.exports = {
     'jsx-a11y/role-has-required-aria-props': ['warn'],
     'jsx-a11y/role-supports-aria-props': ['warn'],
 
+    'sonarjs/elseif-without-else': 'error',
+
     'prettier/prettier': [
       'error',
       {
@@ -310,12 +312,6 @@ module.exports = {
     ]
   },
   overrides: [
-    {
-      files: ['*.tsx', '*.jsx'],
-      rules: {
-        'sonarjs/cognitive-complexity': ['error', 37]
-      }
-    },
     {
       files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
       extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
