@@ -339,12 +339,13 @@ module.exports = {
         'testing-library/no-await-sync-events': 'error',
         'testing-library/no-manual-cleanup': 'error',
         'testing-library/no-render-in-setup': 'error',
-        'testing-library/no-unnecessary-act': 'warn',
+        'testing-library/no-unnecessary-act': ['warn', { isStrict: true }],
         'testing-library/no-wait-for-multiple-assertions': 'warn',
         'testing-library/no-wait-for-side-effects': 'error',
         'testing-library/no-wait-for-snapshot': 'error',
         'testing-library/prefer-explicit-assert': 'error',
         'testing-library/prefer-presence-queries': 'error',
+        'testing-library/prefer-query-by-disappearance': 'error',
         'testing-library/prefer-wait-for': 'error'
       },
       settings: {
