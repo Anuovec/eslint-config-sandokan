@@ -4,6 +4,7 @@ Eslint opinionated configuration for react projects, that use:
 
 - React with hooks or are in process of refactoring to hooks
 - Typescript
+- Recoil as state management library
 - Jest with Testing library for unit, integration testing and UI interaction testing
 
 ![Sandokan](sandokan.jpg)

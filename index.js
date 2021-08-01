@@ -30,7 +30,7 @@ module.exports = {
 
     warnOnUnsupportedTypeScriptVersion: true
   },
-  plugins: ['react-hooks', '@typescript-eslint'],
+  plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-redeclare': ['error'],
     '@typescript-eslint/prefer-optional-chain': 'warn',
@@ -293,6 +293,13 @@ module.exports = {
     // a lot of false positives and not very useful with react functional components
     'react/display-name': 'off',
 
+    'react-hooks/exhaustive-deps': [
+      'error',
+      {
+        additionalHooks: 'useRecoilCallback|useRecoilTransaction_UNSTABLE|useRecoilTransaction'
+      }
+    ],
+
     'jsx-a11y/alt-text': ['warn'],
     'jsx-a11y/anchor-is-valid': ['warn'],
     'jsx-a11y/iframe-has-title': ['warn'],
@@ -323,7 +330,7 @@ module.exports = {
         '@typescript-eslint/unbound-method': 'off',
         'jest/unbound-method': 'error',
 
-        'jest/lowercase-name': 'error',
+        'jest/lowercase-name': ['error', { ignoreTopLevelDescribe: true }],
         'jest/no-commented-out-tests': 'off',
         'jest/prefer-called-with': 'error',
         'jest/prefer-hooks-on-top': 'error',
@@ -334,6 +341,12 @@ module.exports = {
         'jest/no-test-return-statement': 'warn',
         'jest/no-large-snapshots': 'error',
         'jest/no-if': 'error',
+        'jest/max-nested-describe': [
+          'error',
+          {
+            max: 5
+          }
+        ],
 
         'testing-library/no-debug': 'warn',
         'testing-library/no-await-sync-events': 'error',
@@ -343,7 +356,7 @@ module.exports = {
         'testing-library/no-wait-for-multiple-assertions': 'warn',
         'testing-library/no-wait-for-side-effects': 'error',
         'testing-library/no-wait-for-snapshot': 'error',
-        'testing-library/prefer-explicit-assert': 'error',
+        'testing-library/prefer-explicit-assert': ['error', { assertion: 'toBeInTheDocument' }],
         'testing-library/prefer-presence-queries': 'error',
         'testing-library/prefer-query-by-disappearance': 'error',
         'testing-library/prefer-wait-for': 'error'
