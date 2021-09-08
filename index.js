@@ -15,6 +15,7 @@ module.exports = {
     'xo',
     'xo/browser',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:sonarjs/recommended',
@@ -69,6 +70,15 @@ module.exports = {
     ],
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'warn',
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        prefer: 'type-imports'
+      }
+    ],
+    '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
+    '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
+    '@typescript-eslint/array-type': 'warn',
 
     'no-async-promise-executor': 'error',
     'no-warning-comments': 'off',
@@ -77,6 +87,15 @@ module.exports = {
       {
         allowImplicit: true,
         checkForEach: false
+      }
+    ],
+    'capitalized-comments': [
+      'warn',
+      'always',
+      {
+        ignorePattern: 'pragma|ignore|prettier-ignore|webpack\\w+:|c8',
+        ignoreInlineComments: true,
+        ignoreConsecutiveComments: true
       }
     ],
     // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
@@ -237,6 +256,30 @@ module.exports = {
     'import/no-anonymous-default-export': ['warn'],
     'import/no-unresolved': 'off',
     'import/no-webpack-loader-syntax': ['error'],
+    'import/no-namespace': 'warn',
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        pathGroups: [
+          {
+            pattern: '{common,features,pages,locales,permissions,ui}/**',
+            group: 'internal',
+            position: 'after'
+          },
+          {
+            pattern: '{pages,locales,permissions,ui}',
+            group: 'internal',
+            position: 'after'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true
+        }
+      }
+    ],
 
     'unicorn/filename-case': 'off',
     'unicorn/prevent-abbreviations': [
@@ -284,10 +327,11 @@ module.exports = {
     'react/destructuring-assignment': ['error', 'always'],
     'react/no-array-index-key': 'error',
     'react/no-danger': 'error',
+    'react/no-children-prop': ['error', { allowFunctions: true }],
     'react/jsx-fragments': ['warn', 'syntax'],
     'react/jsx-handler-names': 'error',
     'react/jsx-no-constructed-context-values': 'warn',
-    'react/jsx-no-useless-fragment': 'warn',
+    'react/jsx-no-useless-fragment': ['warn', { allowExpressions: true }],
     // a lot of false positives
     'react/prop-types': 'off',
     // a lot of false positives and not very useful with react functional components
@@ -367,6 +411,7 @@ module.exports = {
     }
   ],
   settings: {
+    'import/external-module-folders': ['node_modules', '@types'],
     react: {
       version: 'detect'
     }
