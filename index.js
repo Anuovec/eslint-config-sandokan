@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: false,
     browser: true,
-    jest: true
+    jest: true,
   },
   extends: [
     'eslint:recommended',
@@ -14,22 +14,23 @@ module.exports = {
     'plugin:unicorn/recommended',
     'xo',
     'xo/browser',
+    'no-date-parsing',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:sonarjs/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2018,
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
 
-    warnOnUnsupportedTypeScriptVersion: true
+    warnOnUnsupportedTypeScriptVersion: true,
   },
   plugins: ['@typescript-eslint'],
   rules: {
@@ -48,8 +49,8 @@ module.exports = {
         functions: false,
         classes: false,
         variables: false,
-        typedefs: false
-      }
+        typedefs: false,
+      },
     ],
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': [
@@ -57,24 +58,24 @@ module.exports = {
       {
         allowShortCircuit: true,
         allowTernary: true,
-        allowTaggedTemplates: true
-      }
+        allowTaggedTemplates: true,
+      },
     ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
         args: 'none',
-        ignoreRestSiblings: true
-      }
+        ignoreRestSiblings: true,
+      },
     ],
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'warn',
     '@typescript-eslint/consistent-type-imports': [
       'error',
       {
-        prefer: 'type-imports'
-      }
+        prefer: 'type-imports',
+      },
     ],
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
@@ -86,8 +87,8 @@ module.exports = {
       'warn',
       {
         allowImplicit: true,
-        checkForEach: false
-      }
+        checkForEach: false,
+      },
     ],
     'capitalized-comments': [
       'warn',
@@ -95,8 +96,8 @@ module.exports = {
       {
         ignorePattern: 'pragma|ignore|prettier-ignore|webpack\\w+:|c8',
         ignoreInlineComments: true,
-        ignoreConsecutiveComments: true
-      }
+        ignoreConsecutiveComments: true,
+      },
     ],
     // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
     'default-case': 'off',
@@ -130,8 +131,8 @@ module.exports = {
       'warn',
       {
         allowLoop: true,
-        allowSwitch: false
-      }
+        allowSwitch: false,
+      },
     ],
     'no-lone-blocks': ['warn'],
     'no-loop-func': ['warn'],
@@ -151,8 +152,8 @@ module.exports = {
     'no-self-assign': [
       'warn',
       {
-        props: true
-      }
+        props: true,
+      },
     ],
     'no-self-compare': ['warn'],
     'no-sequences': ['warn'],
@@ -220,15 +221,15 @@ module.exports = {
       'statusbar',
       'stop',
       'toolbar',
-      'top'
+      'top',
     ],
     'no-unreachable': ['warn'],
     'no-unused-labels': ['warn'],
     'no-useless-computed-key': [
       'warn',
       {
-        enforceForClassMembers: true
-      }
+        enforceForClassMembers: true,
+      },
     ],
     'no-useless-concat': ['warn'],
     'no-useless-escape': ['warn'],
@@ -237,8 +238,8 @@ module.exports = {
       {
         ignoreDestructuring: false,
         ignoreImport: false,
-        ignoreExport: false
-      }
+        ignoreExport: false,
+      },
     ],
     'no-with': ['warn'],
     'require-yield': ['warn'],
@@ -247,8 +248,8 @@ module.exports = {
     'valid-typeof': [
       'warn',
       {
-        requireStringLiterals: false
-      }
+        requireStringLiterals: false,
+      },
     ],
     'getter-return': ['warn'],
 
@@ -265,28 +266,28 @@ module.exports = {
           {
             pattern: '{common,features,pages,locales,permissions,ui}/**',
             group: 'internal',
-            position: 'after'
+            position: 'after',
           },
           {
             pattern: '{pages,locales,permissions,ui}',
             group: 'internal',
-            position: 'after'
-          }
+            position: 'after',
+          },
         ],
         pathGroupsExcludedImportTypes: ['builtin'],
         alphabetize: {
           order: 'asc',
-          caseInsensitive: true
-        }
-      }
+          caseInsensitive: true,
+        },
+      },
     ],
 
     'unicorn/filename-case': 'off',
     'unicorn/prevent-abbreviations': [
       'error',
       {
-        ignore: ['param', 'Params', 'err', 'props', 'i18n']
-      }
+        ignore: ['param', 'Params', 'err', 'props', 'i18n'],
+      },
     ],
     'unicorn/no-null': 'off',
     'unicorn/consistent-function-scoping': 'off',
@@ -294,20 +295,22 @@ module.exports = {
     'unicorn/prefer-node-protocol': 'off',
     'unicorn/prefer-module': 'off',
 
+    'no-date-parsing/no-date-parsing': 'error',
+
     'react/self-closing-comp': [
       'error',
       {
         component: true,
-        html: true
-      }
+        html: true,
+      },
     ],
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/forbid-foreign-prop-types': [
       'warn',
       {
-        allowInPropTypes: true
-      }
+        allowInPropTypes: true,
+      },
     ],
     'react/jsx-no-comment-textnodes': ['warn'],
     'react/jsx-no-duplicate-props': ['warn'],
@@ -316,8 +319,8 @@ module.exports = {
       'warn',
       {
         allowAllCaps: false,
-        ignore: []
-      }
+        ignore: [],
+      },
     ],
     'react/no-typos': ['error'],
     'react/style-prop-object': ['error'],
@@ -328,6 +331,7 @@ module.exports = {
     'react/no-array-index-key': 'error',
     'react/no-danger': 'error',
     'react/no-children-prop': ['error', { allowFunctions: true }],
+    'react/jsx-child-element-spacing': 'error',
     'react/jsx-fragments': ['warn', 'syntax'],
     'react/jsx-handler-names': 'error',
     'react/jsx-no-constructed-context-values': 'warn',
@@ -336,12 +340,15 @@ module.exports = {
     'react/prop-types': 'off',
     // a lot of false positives and not very useful with react functional components
     'react/display-name': 'off',
+    'react/no-unused-prop-types': 'error',
+    'react/void-dom-elements-no-children': 'error',
+    'react/jsx-boolean-value': 'error',
 
     'react-hooks/exhaustive-deps': [
       'error',
       {
-        additionalHooks: 'useRecoilCallback|useRecoilTransaction_UNSTABLE|useRecoilTransaction'
-      }
+        additionalHooks: 'useRecoilCallback|useRecoilTransaction_UNSTABLE|useRecoilTransaction',
+      },
     ],
 
     'jsx-a11y/alt-text': ['warn'],
@@ -358,16 +365,16 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto'
-      }
-    ]
+        endOfLine: 'auto',
+      },
+    ],
   },
   overrides: [
     {
       files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
       extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
       env: {
-        'jest/globals': true
+        'jest/globals': true,
       },
       rules: {
         // add jest extension and turn off original rule
@@ -388,8 +395,8 @@ module.exports = {
         'jest/max-nested-describe': [
           'error',
           {
-            max: 5
-          }
+            max: 5,
+          },
         ],
 
         'testing-library/no-debug': 'warn',
@@ -403,17 +410,17 @@ module.exports = {
         'testing-library/prefer-explicit-assert': ['error', { assertion: 'toBeInTheDocument' }],
         'testing-library/prefer-presence-queries': 'error',
         'testing-library/prefer-query-by-disappearance': 'error',
-        'testing-library/prefer-wait-for': 'error'
+        'testing-library/prefer-wait-for': 'error',
       },
       settings: {
-        jest: { version: 26 }
-      }
-    }
+        jest: { version: 26 },
+      },
+    },
   ],
   settings: {
     'import/external-module-folders': ['node_modules', '@types'],
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 };

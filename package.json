@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-sandokan",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "author": "Tibor The Mad Programmer <tibor.hanesz@gmail.com>",
   "repository": {
     "type": "git",
@@ -19,14 +19,15 @@
     "eslint-plugin-import": "2.24.2",
     "eslint-plugin-jest": "24.4.0",
     "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-no-date-parsing": "^0.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react": "7.25.1",
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-sonarjs": "0.10.0",
-    "eslint-plugin-testing-library": "4.12.1",
-    "eslint-plugin-unicorn": "35.0.0",
-    "prettier": "2.3.2"
+    "eslint-plugin-testing-library": "4.12.2",
+    "eslint-plugin-unicorn": "36.0.0",
+    "prettier": "2.4.0"
   },
   "peerDependencies": {
     "eslint": ">=7.28.0 <8"
