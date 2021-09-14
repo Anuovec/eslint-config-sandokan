@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-sandokan",
-  "version": "0.12.0",
+  "version": "0.12.2",
   "author": "Tibor The Mad Programmer <tibor.hanesz@gmail.com>",
   "repository": {
     "type": "git",
