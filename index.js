@@ -14,7 +14,6 @@ module.exports = {
     'plugin:unicorn/recommended',
     'xo',
     'xo/browser',
-    'no-date-parsing',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
@@ -32,7 +31,7 @@ module.exports = {
 
     warnOnUnsupportedTypeScriptVersion: true,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'no-date-parsing'],
   rules: {
     '@typescript-eslint/no-redeclare': ['error'],
     '@typescript-eslint/prefer-optional-chain': 'warn',
