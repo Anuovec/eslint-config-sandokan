@@ -339,7 +339,6 @@ module.exports = {
     'react/prop-types': 'off',
     // a lot of false positives and not very useful with react functional components
     'react/display-name': 'off',
-    'react/no-unused-prop-types': 'error',
     'react/void-dom-elements-no-children': 'error',
     'react/jsx-boolean-value': 'error',
 
