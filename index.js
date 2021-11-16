@@ -8,6 +8,8 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
     'plugin:import/recommended',
@@ -24,7 +26,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 2018,
+    ecmaVersion: 2019,
     ecmaFeatures: {
       jsx: true,
     },
@@ -79,6 +81,9 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
     '@typescript-eslint/array-type': 'warn',
+    '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
+    '@typescript-eslint/sort-type-union-intersection-members': 'warn',
+    '@typescript-eslint/no-invalid-void-type': 'warn',
 
     'no-async-promise-executor': 'error',
     'no-warning-comments': 'off',
