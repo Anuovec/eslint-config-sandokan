@@ -10,6 +10,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/strict',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
     'plugin:import/recommended',
@@ -33,12 +34,8 @@ module.exports = {
 
     warnOnUnsupportedTypeScriptVersion: true,
   },
-  plugins: ['@typescript-eslint', 'no-date-parsing'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    '@typescript-eslint/no-redeclare': ['error'],
-    '@typescript-eslint/prefer-optional-chain': 'warn',
-    // Add TypeScript specific rules (and turn off ESLint equivalents)
-    '@typescript-eslint/consistent-type-assertions': 'warn',
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': 'warn',
     'no-redeclare': 'off',
@@ -70,20 +67,31 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
-    'no-useless-constructor': 'off',
-    '@typescript-eslint/no-useless-constructor': 'warn',
+    // note you must disable the base rule as it can report incorrect errors
+    'no-throw-literal': 'off',
+    '@typescript-eslint/no-throw-literal': [
+      'error',
+      {
+        allowThrowingAny: false,
+        allowThrowingUnknown: false,
+      },
+    ],
+    'space-before-blocks': 'off',
+    '@typescript-eslint/space-before-blocks': ['error'],
     '@typescript-eslint/consistent-type-imports': [
       'error',
       {
-        prefer: 'no-type-imports',
+        prefer: 'type-imports',
       },
     ],
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
-    '@typescript-eslint/array-type': 'warn',
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
     '@typescript-eslint/sort-type-union-intersection-members': 'warn',
     '@typescript-eslint/no-invalid-void-type': 'warn',
+    '@typescript-eslint/no-redundant-type-constituents': 'warn',
+    '@typescript-eslint/no-useless-empty-export': 'warn',
+    '@typescript-eslint/consistent-type-definitions': 'off',
 
     'no-async-promise-executor': 'error',
     'no-warning-comments': 'off',
@@ -165,7 +173,6 @@ module.exports = {
     'no-sparse-arrays': ['warn'],
     'no-template-curly-in-string': ['warn'],
     'no-this-before-super': ['warn'],
-    'no-throw-literal': ['warn'],
     'no-restricted-globals': [
       'error',
       'addEventListener',
@@ -229,6 +236,7 @@ module.exports = {
     ],
     'no-unreachable': ['warn'],
     'no-unused-labels': ['warn'],
+    'no-unused-private-class-members': 'warn',
     'no-useless-computed-key': [
       'warn',
       {
@@ -268,7 +276,7 @@ module.exports = {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         pathGroups: [
           {
-            pattern: '{common,features,pages,locales,permissions,ui}/**',
+            pattern: '{common,features,pages,locales,models,permissions,ui}/**',
             group: 'internal',
             position: 'after',
           },
@@ -301,8 +309,7 @@ module.exports = {
     'unicorn/prefer-node-protocol': 'off',
     'unicorn/prefer-module': 'off',
 
-    'no-date-parsing/no-date-parsing': 'error',
-
+    'react/hook-use-state': 'error',
     'react/self-closing-comp': [
       'error',
       {
@@ -342,6 +349,7 @@ module.exports = {
     'react/jsx-child-element-spacing': 'error',
     'react/jsx-fragments': ['warn', 'syntax'],
     'react/jsx-handler-names': 'error',
+    'react/jsx-no-leaked-render': 'warn',
     'react/jsx-no-constructed-context-values': 'warn',
     'react/jsx-no-useless-fragment': ['warn', { allowExpressions: true }],
     // a lot of false positives
@@ -398,7 +406,10 @@ module.exports = {
         'jest/no-test-return-statement': 'warn',
         'jest/no-large-snapshots': 'error',
         'jest/prefer-called-with': 'error',
+        'jest/prefer-comparison-matcher': 'error',
+        'jest/prefer-equality-matcher': 'error',
         'jest/prefer-expect-resolves': 'error',
+        'jest/prefer-hooks-in-order': 'error',
         'jest/prefer-hooks-on-top': 'error',
         'jest/prefer-lowercase-title': ['error', { ignoreTopLevelDescribe: true }],
         'jest/prefer-spy-on': 'error',
