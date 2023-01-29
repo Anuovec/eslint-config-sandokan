@@ -4,6 +4,7 @@ Eslint opinionated configuration for react projects, that use:
 
 - React with hooks or are in process of refactoring to hooks
 - Typescript
+- React Query for data fetching
 - Recoil as state management library
 - Jest with Testing library for unit, integration testing and UI interaction testing
 
@@ -35,8 +36,6 @@ it is applied to all files that ends with `.test.` or `.spec.`.
 ## TODO
 
 - unicorn/filename-case
-- unicorn/no-null
-- unicorn/no-useless-undefined
 - unicorn/no-array-callback-reference -> a lot of false positives
 - unicorn/prefer-node-protocol re-enable when node 16 more popular
 - unicorn/prefer-module re-enable when js modules more popular

@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-sandokan",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "author": "Tibor The Mad Programmer <tibor.hanesz@gmail.com>",
   "repository": {
     "type": "git",
@@ -11,24 +11,27 @@
   ],
   "main": "index.js",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "5.31.0",
-    "@typescript-eslint/parser": "5.31.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-config-xo": "0.41.0",
+    "@tanstack/eslint-plugin-query": "^4.24.0",
+    "@typescript-eslint/eslint-plugin": "5.49.0",
+    "@typescript-eslint/parser": "5.49.0",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-config-xo": "0.43.1",
+    "eslint-config-xo-typescript": "^0.55.1",
     "eslint-plugin-eslint-comments": "3.2.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jest": "26.6.0",
-    "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jest": "27.2.1",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-no-date-parsing": "1.0.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-sonarjs": "0.14.0",
-    "eslint-plugin-testing-library": "5.5.1",
-    "eslint-plugin-unicorn": "43.0.2",
-    "prettier": "2.7.1"
+    "eslint-plugin-sonarjs": "0.18.0",
+    "eslint-plugin-testing-library": "5.10.0",
+    "eslint-plugin-unicorn": "45.0.2",
+    "prettier": "2.8.3"
   },
   "peerDependencies": {
-    "eslint": ">=8.20.0 <9"
+    "eslint": ">=8.33.0"
   }
 }
