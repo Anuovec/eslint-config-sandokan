@@ -1,3 +1,78 @@
+const allOurSelectors = [
+  'variable',
+  'function',
+  'classProperty',
+  'objectLiteralProperty',
+  'parameterProperty',
+  'classMethod',
+  'objectLiteralMethod',
+  'typeMethod',
+  'accessor',
+];
+
+const ourShortcuts = '^.*UTC.*$|^.*URL.*$|^.*DOP.*$|^.*DOC.*^';
+
+const getNamingConventionRule = ({ isTsx }) => ({
+  '@typescript-eslint/naming-convention': [
+    'error',
+    {
+      /// selector: ['variableLike', 'memberLike', 'property', 'method'],
+      // Note: Leaving out `parameter` and `typeProperty` because of the mentioned known issues.
+      // Note: We are intentionally leaving out `enumMember` as it's usually pascal-case or upper-snake-case.
+      selector: allOurSelectors,
+      format: ['strictCamelCase', isTsx && 'StrictPascalCase'].filter(Boolean),
+      // We allow double underscore because of GraphQL type names and some React names.
+      leadingUnderscore: 'allowSingleOrDouble',
+      trailingUnderscore: 'allow',
+      // Ignore `{'Retry-After': retryAfter}` type properties.
+      filter: {
+        regex: `[- ]|^[0-9]+$|${ourShortcuts}`,
+        match: false,
+      },
+    },
+    {
+      selector: 'typeLike',
+      format: ['StrictPascalCase'],
+    },
+    {
+      selector: 'variable',
+      types: ['boolean'],
+      format: ['StrictPascalCase'],
+      prefix: ['is', 'has', 'can', 'should', 'will', 'did'],
+    },
+    {
+      // Interface name should not be prefixed with `I`.
+      selector: 'interface',
+      filter: /^(?!I)[A-Z]/.source,
+      format: ['StrictPascalCase'],
+    },
+    {
+      selector: 'typeParameter',
+      filter: /^[A-Z][a-z][a-zA-Z]+$/.source,
+      format: ['StrictPascalCase'],
+    },
+    {
+      selector: 'typeParameter',
+      filter: /^T$|^[A-Z][a-zA-Z]+$/.source,
+      format: ['PascalCase'],
+    },
+    // Allow these in non-camel-case when quoted.
+    {
+      selector: ['classProperty', 'objectLiteralProperty'],
+      format: null,
+      modifiers: ['requiresQuotes'],
+    },
+    {
+      selector: allOurSelectors,
+      filter: {
+        regex: ourShortcuts,
+        match: true,
+      },
+      format: ['camelCase'],
+    },
+  ],
+});
+
 module.exports = {
   env: {
     commonjs: true,
@@ -102,6 +177,56 @@ module.exports = {
 
     // turned off from eslint-config-xo-typescript due to prettier handling this
     '@typescript-eslint/brace-style': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        extendDefaults: false,
+        types: {
+          String: {
+            message: 'Use `string` instead.',
+            fixWith: 'string',
+          },
+          Number: {
+            message: 'Use `number` instead.',
+            fixWith: 'number',
+          },
+          Boolean: {
+            message: 'Use `boolean` instead.',
+            fixWith: 'boolean',
+          },
+          Symbol: {
+            message: 'Use `symbol` instead.',
+            fixWith: 'symbol',
+          },
+          BigInt: {
+            message: 'Use `bigint` instead.',
+            fixWith: 'bigint',
+          },
+          Object: {
+            message:
+              'The `Object` type is mostly the same as `unknown`. You probably want `Record<string, unknown>` instead. See https://github.com/typescript-eslint/typescript-eslint/pull/848',
+            fixWith: 'Record<string, unknown>',
+          },
+          '{}': {
+            message:
+              'The `{}` type is mostly the same as `unknown`. You probably want `Record<string, unknown>` instead.',
+            fixWith: 'Record<string, unknown>',
+          },
+          object: {
+            message:
+              'The `object` type is hard to use. Use `Record<string, unknown>` instead. See: https://github.com/typescript-eslint/typescript-eslint/pull/848',
+            fixWith: 'Record<string, unknown>',
+          },
+          Function: 'Use a specific function type instead, like `() => void`.',
+          '[]': "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
+          '[[]]':
+            "Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
+          '[[[]]]': "Don't use `[[[]]]`. Use `SomeType[][][]` instead.",
+          '[[[[]]]]': 'ur drunk 🤡',
+          '[[[[[]]]]]': '🦄💥',
+        },
+      },
+    ],
     '@typescript-eslint/comma-dangle': 'off',
     '@typescript-eslint/comma-spacing': 'off',
     '@typescript-eslint/func-call-spacing': 'off',
@@ -118,6 +243,7 @@ module.exports = {
     '@typescript-eslint/space-infix-ops': 'off',
     '@typescript-eslint/semi': 'off',
     '@typescript-eslint/type-annotation-spacing': 'off',
+    ...getNamingConventionRule({ isTsx: false }),
 
     camelcase: 'off',
     'logical-assignment-operators': [
@@ -430,6 +556,12 @@ module.exports = {
     ],
   },
   overrides: [
+    {
+      files: ['**/*.tsx'],
+      rules: {
+        ...getNamingConventionRule({ isTsx: true }),
+      },
+    },
     {
       files: ['src/ui/**/*.[jt]s?(x)', 'App.tsx'],
       rules: {
