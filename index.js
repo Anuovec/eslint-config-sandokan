@@ -172,6 +172,15 @@ module.exports = {
       'querystring',
       'colors',
       'antd',
+      '@mantine',
+    ],
+    '@typescript-eslint/prefer-nullish-coalescing': [
+      'error',
+      {
+        ignoreTernaryTests: false,
+        ignoreConditionalTests: false,
+        ignoreMixedLogicalExpressions: true,
+      },
     ],
     '@typescript-eslint/consistent-type-definitions': 'off',
 
@@ -441,12 +450,12 @@ module.exports = {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         pathGroups: [
           {
-            pattern: '{common,features,pages,locales,models,permissions,ui,types}/**',
+            pattern: '{pages,locales,permissions,ui}',
             group: 'internal',
             position: 'after',
           },
           {
-            pattern: '{pages,locales,permissions,ui}',
+            pattern: '{common,features,pages,locales,models,permissions,ui,types}/**',
             group: 'internal',
             position: 'after',
           },
@@ -615,7 +624,6 @@ module.exports = {
         'jest/require-top-level-describe': 'warn',
 
         'testing-library/no-debugging-utils': 'warn',
-        'testing-library/no-await-sync-events': 'error',
         'testing-library/no-manual-cleanup': 'error',
         'testing-library/prefer-explicit-assert': ['error', { assertion: 'toBeInTheDocument' }],
         'testing-library/prefer-wait-for': 'error',
