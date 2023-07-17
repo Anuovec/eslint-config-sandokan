@@ -173,6 +173,7 @@ module.exports = {
       'colors',
       'antd',
       '@mantine',
+      'features/*/*',
     ],
     '@typescript-eslint/prefer-nullish-coalescing': [
       'error',
@@ -584,6 +585,7 @@ module.exports = {
           'sys',
           'querystring',
           'colors',
+          'features/*/*',
         ],
       },
     },
