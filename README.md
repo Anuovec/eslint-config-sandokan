@@ -28,6 +28,13 @@ npm install eslint-plugin-sandokan -g         # or install globally
 }
 ```
 
+### Additional recommendation
+
+This configuration is meant to be used with:
+
+- [TypeScript](https://www.typescriptlang.org/) and the [`noUnusedLocals`](https://www.typescriptlang.org/tsconfig#noUnusedLocals) setting.
+- [`@ianvs/prettier-plugin-sort-imports`](https://github.com/ianvs/prettier-plugin-sort-imports) [Prettier](https://prettier.io/) plugin.
+
 ## Testing config
 
 The configuration is made for Jest and Testing Library.
@@ -36,6 +43,3 @@ it is applied to all files that ends with `.test.` or `.spec.`.
 ## TODO
 
 - unicorn/filename-case
-- unicorn/no-array-callback-reference -> a lot of false positives
-- unicorn/prefer-node-protocol re-enable when node 16 more popular
-- unicorn/prefer-module re-enable when js modules more popular
