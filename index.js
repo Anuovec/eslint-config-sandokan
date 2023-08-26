@@ -83,9 +83,8 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:@typescript-eslint/strict',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
     'plugin:import/recommended',
@@ -111,7 +110,7 @@ module.exports = {
 
     warnOnUnsupportedTypeScriptVersion: true,
   },
-  plugins: ['@typescript-eslint', 'no-date-parsing'],
+  plugins: ['@typescript-eslint', 'sort-destructure-keys'],
   rules: {
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': 'warn',
@@ -137,14 +136,7 @@ module.exports = {
       },
     ],
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'warn',
-      {
-        args: 'none',
-        ignoreRestSiblings: true,
-      },
-    ],
-    // note you must disable the base rule as it can report incorrect errors
+    '@typescript-eslint/no-unused-vars': 'off',
     'no-throw-literal': 'off',
     '@typescript-eslint/no-throw-literal': [
       'error',
@@ -157,22 +149,27 @@ module.exports = {
     '@typescript-eslint/space-before-blocks': 'error',
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
-    '@typescript-eslint/sort-type-union-intersection-members': 'warn',
+    '@typescript-eslint/sort-type-constituents': 'warn',
     '@typescript-eslint/no-invalid-void-type': 'warn',
     '@typescript-eslint/no-redundant-type-constituents': 'warn',
     '@typescript-eslint/no-useless-empty-export': 'warn',
     '@typescript-eslint/no-restricted-imports': [
       'error',
-      'error',
-      'domain',
-      'freelist',
-      'smalloc',
-      'punycode',
-      'sys',
-      'querystring',
-      'colors',
-      'antd',
-      '@mantine',
+      {
+        paths: [
+          'error',
+          'domain',
+          'freelist',
+          'smalloc',
+          'punycode',
+          'sys',
+          'querystring',
+          'colors',
+          'antd',
+          '@mantine',
+        ],
+        patterns: ['@mantine/*', 'features/*/*'],
+      },
     ],
     '@typescript-eslint/prefer-nullish-coalescing': [
       'error',
@@ -180,6 +177,7 @@ module.exports = {
         ignoreTernaryTests: false,
         ignoreConditionalTests: false,
         ignoreMixedLogicalExpressions: true,
+        ignorePrimitives: true,
       },
     ],
     '@typescript-eslint/consistent-type-definitions': 'off',
@@ -236,22 +234,9 @@ module.exports = {
         },
       },
     ],
-    '@typescript-eslint/comma-dangle': 'off',
-    '@typescript-eslint/comma-spacing': 'off',
-    '@typescript-eslint/func-call-spacing': 'off',
-    '@typescript-eslint/keyword-spacing': 'off',
-    '@typescript-eslint/indent': 'off',
     '@typescript-eslint/lines-between-class-members': 'off',
-    '@typescript-eslint/member-delimiter-style': 'off',
-    '@typescript-eslint/indent': 'off',
-    '@typescript-eslint/no-extra-semi': 'off',
-    '@typescript-eslint/object-curly-spacing': 'off',
     '@typescript-eslint/padding-line-between-statements': 'off',
     '@typescript-eslint/quotes': 'off',
-    '@typescript-eslint/space-before-function-paren': 'off',
-    '@typescript-eslint/space-infix-ops': 'off',
-    '@typescript-eslint/semi': 'off',
-    '@typescript-eslint/type-annotation-spacing': 'off',
     ...getNamingConventionRule({ isTsx: false }),
 
     camelcase: 'off',
@@ -478,11 +463,8 @@ module.exports = {
       },
     ],
     'unicorn/no-null': 'off',
-    'unicorn/consistent-function-scoping': 'off',
     'unicorn/switch-case-braces': ['error', 'avoid'],
     'unicorn/no-useless-undefined': 'off',
-    'unicorn/prefer-node-protocol': 'off',
-    'unicorn/prefer-module': 'off',
 
     'react/hook-use-state': ['error', { allowDestructuredState: true }],
     'react/self-closing-comp': [
@@ -493,6 +475,7 @@ module.exports = {
       },
     ],
     'react/jsx-uses-react': 'off',
+    'react/jsx-sort-props': 'warn',
     'react/react-in-jsx-scope': 'off',
     'react/forbid-foreign-prop-types': [
       'warn',
@@ -555,7 +538,9 @@ module.exports = {
 
     'sonarjs/elseif-without-else': 'error',
 
-    'no-date-parsing/no-date-parsing': 'error',
+    // 'no-date-parsing/no-date-parsing': 'error',
+
+    'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: false }],
 
     'prettier/prettier': [
       'error',
@@ -576,14 +561,10 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-restricted-imports': [
           'error',
-          'error',
-          'domain',
-          'freelist',
-          'smalloc',
-          'punycode',
-          'sys',
-          'querystring',
-          'colors',
+          {
+            paths: ['error', 'domain', 'freelist', 'smalloc', 'punycode', 'sys', 'querystring', 'colors'],
+            patterns: ['features/*/*'],
+          },
         ],
       },
     },
@@ -623,10 +604,7 @@ module.exports = {
         'jest/require-to-throw-message': 'error',
         'jest/require-top-level-describe': 'warn',
 
-        'testing-library/no-debugging-utils': 'warn',
-        'testing-library/no-manual-cleanup': 'error',
         'testing-library/prefer-explicit-assert': ['error', { assertion: 'toBeInTheDocument' }],
-        'testing-library/prefer-wait-for': 'error',
       },
       settings: {
         jest: { version: 27 },
