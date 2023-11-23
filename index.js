@@ -81,6 +81,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
+  reportUnusedDisableDirectives: true,
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
@@ -98,6 +99,7 @@ module.exports = {
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:sonarjs/recommended',
+    'plugin:regexp/recommended',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -110,12 +112,14 @@ module.exports = {
 
     warnOnUnsupportedTypeScriptVersion: true,
   },
-  plugins: ['@typescript-eslint', 'sort-destructure-keys'],
+  plugins: ['@typescript-eslint', 'sort-destructure-keys', 'regexp'],
   rules: {
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': 'warn',
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'warn',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'warn',
@@ -145,13 +149,30 @@ module.exports = {
         allowThrowingUnknown: false,
       },
     ],
+    'prefer-destructuring': 'off',
+    '@typescript-eslint/space-before-blocks': [
+      'error',
+      {
+        VariableDeclarator: {
+          array: false,
+          object: true,
+        },
+        AssignmentExpression: {
+          array: false,
+          object: false,
+        },
+      },
+      {
+        enforceForRenamedProperties: false,
+      },
+    ],
     'space-before-blocks': 'off',
     '@typescript-eslint/space-before-blocks': 'error',
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
     '@typescript-eslint/sort-type-constituents': 'warn',
     '@typescript-eslint/no-invalid-void-type': 'warn',
-    '@typescript-eslint/no-redundant-type-constituents': 'warn',
+    '@typescript-eslint/no-unsafe-unary-minus': 'error',
     '@typescript-eslint/no-useless-empty-export': 'warn',
     '@typescript-eslint/no-restricted-imports': [
       'error',
@@ -177,7 +198,6 @@ module.exports = {
         ignoreTernaryTests: false,
         ignoreConditionalTests: false,
         ignoreMixedLogicalExpressions: true,
-        ignorePrimitives: true,
       },
     ],
     '@typescript-eslint/consistent-type-definitions': 'off',
@@ -210,21 +230,37 @@ module.exports = {
             fixWith: 'bigint',
           },
           Object: {
-            message:
-              'The `Object` type is mostly the same as `unknown`. You probably want `Record<string, unknown>` instead. See https://github.com/typescript-eslint/typescript-eslint/pull/848',
-            fixWith: 'Record<string, unknown>',
+            message: [
+              'The `Object` type actually means "any non-nullish value", so it is marginally better than `unknown`.',
+              '- If you want a type meaning "any object", you probably want `object` instead.',
+              '- If you want a type meaning "any value", you probably want `unknown` instead.',
+              '- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.',
+            ].join('\n'),
+            suggest: ['Record<string, unknown>', 'unknown', 'NonNullable<unknown>'],
           },
           '{}': {
-            message:
-              'The `{}` type is mostly the same as `unknown`. You probably want `Record<string, unknown>` instead.',
-            fixWith: 'Record<string, unknown>',
+            message: [
+              '`{}` actually means "any non-nullish value".',
+              '- If you want a type meaning "any object", you probably want `object` instead.',
+              '- If you want a type meaning "any value", you probably want `unknown` instead.',
+              '- If you want a type meaning "empty object", you probably want `Record<string, never>` instead.',
+              '- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.',
+            ].join('\n'),
+            suggest: ['unknown', 'Record<string, unknown>', 'NonNullable<unknown>'],
           },
           object: {
             message:
               'The `object` type is hard to use. Use `Record<string, unknown>` instead. See: https://github.com/typescript-eslint/typescript-eslint/pull/848',
             fixWith: 'Record<string, unknown>',
           },
-          Function: 'Use a specific function type instead, like `() => void`.',
+          Function: {
+            message: [
+              'The `Function` type accepts any function-like value.',
+              'It provides no type safety when calling the function, which can be a common source of bugs.',
+              'It also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.',
+              'If you are expecting the function to accept certain arguments, you should explicitly define the function shape.',
+            ].join('\n'),
+          },
           '[]': "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
           '[[]]':
             "Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
@@ -235,6 +271,9 @@ module.exports = {
       },
     ],
     '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
+    '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/object-curly-spacing': 'off',
     '@typescript-eslint/padding-line-between-statements': 'off',
     '@typescript-eslint/quotes': 'off',
     ...getNamingConventionRule({ isTsx: false }),
@@ -248,6 +287,7 @@ module.exports = {
       },
     ],
     'no-async-promise-executor': 'error',
+    'no-param-reassign': 'error',
     'no-warning-comments': 'off',
     'array-callback-return': [
       'warn',
@@ -274,6 +314,7 @@ module.exports = {
     eqeqeq: ['warn', 'smart'],
     'no-caller': 'warn',
     'no-cond-assign': ['warn', 'except-parens'],
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-const-assign': 'warn',
     'no-control-regex': 'warn',
     'no-delete-var': 'warn',
@@ -407,6 +448,8 @@ module.exports = {
       },
     ],
     'no-with': 'warn',
+    'prefer-named-capture-group': 'error',
+    'prefer-template': 'error',
     'require-atomic-updates': 'warn',
     'require-yield': 'warn',
     strict: ['warn', 'never'],
@@ -418,6 +461,9 @@ module.exports = {
       },
     ],
     'getter-return': 'warn',
+    'sort-imports': ['warn', { ignoreDeclarationSort: true }],
+
+    'eslint-comments/require-description': 'warn',
 
     'promise/no-multiple-resolved': 'error',
 
@@ -517,6 +563,8 @@ module.exports = {
     'react/display-name': 'off',
     'react/void-dom-elements-no-children': 'error',
     'react/jsx-boolean-value': 'error',
+    'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
+    'react/jsx-curly-brace-presence': 'warn',
 
     'react-hooks/exhaustive-deps': [
       'error',
@@ -546,6 +594,12 @@ module.exports = {
       'error',
       {
         endOfLine: 'auto',
+        printWidth: 120,
+        singleQuote: true,
+        trailingComma: 'all',
+      },
+      {
+        usePrettierrc: false,
       },
     ],
   },
@@ -585,6 +639,8 @@ module.exports = {
           },
         ],
         'jest/no-commented-out-tests': 'off',
+        'jest/no-confusing-set-timeout': 'warn',
+        'jest/no-duplicate-hooks': 'error',
         'jest/no-if': 'error',
         'jest/no-test-return-statement': 'warn',
         'jest/no-large-snapshots': 'error',

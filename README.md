@@ -8,6 +8,8 @@ Eslint opinionated configuration for react projects, that use:
 - Recoil as state management library
 - Jest with Testing library for unit, integration testing and UI interaction testing
 
+It also contains configuration for `Prettier` and `Typescript`.
+
 ![Sandokan](sandokan.jpg)
 
 ## Usage
@@ -28,12 +30,21 @@ npm install eslint-plugin-sandokan -g         # or install globally
 }
 ```
 
-### Additional recommendation
+### Prettier
 
-This configuration is meant to be used with:
+To use the shared Prettier config, set the following in `.prettierrc.yaml`:
 
-- [TypeScript](https://www.typescriptlang.org/) and the [`noUnusedLocals`](https://www.typescriptlang.org/tsconfig#noUnusedLocals) setting.
-- [`@ianvs/prettier-plugin-sort-imports`](https://github.com/ianvs/prettier-plugin-sort-imports) [Prettier](https://prettier.io/) plugin.
+`'eslint-config-sandokan/prettier'`
+
+### TypeScript
+
+To use the shared TypeScript config, set the following in `tsconfig.json`.
+
+```json
+{
+  "extends": "eslint-config-sandokan/typescript"
+}
+```
 
 ## Testing config
 
