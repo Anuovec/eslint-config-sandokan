@@ -1,5 +1,4 @@
 const allOurSelectors = [
-  'variable',
   'function',
   'classProperty',
   'objectLiteralProperty',
@@ -11,6 +10,7 @@ const allOurSelectors = [
 ];
 
 const ourShortcuts = '^.*UTC.*$|^.*URL.*$|^.*DOP.*$|^.*DOC.*^';
+const booleanPrefixes = ['is', 'has', 'can', 'should', 'will', 'did'];
 
 const getNamingConventionRule = ({ isTsx }) => ({
   '@typescript-eslint/naming-convention': [
@@ -36,9 +36,44 @@ const getNamingConventionRule = ({ isTsx }) => ({
     },
     {
       selector: 'variable',
+      modifiers: ['const'],
+      types: ['number', 'string'],
+      filter: /^[A-Z]+(?:_[A-Z]+)*$/.source,
+      format: ['UPPER_CASE'],
+    },
+    {
+      selector: 'variable',
+      modifiers: ['const'],
+      types: ['boolean'],
+      filter: /^[A-Z]+(?:_[A-Z]+)*$/.source,
+      format: ['UPPER_CASE'],
+      prefix: booleanPrefixes.map((prefix) => `${prefix.toUpperCase()}_`),
+    },
+    {
+      selector: 'variable',
       types: ['boolean'],
       format: ['StrictPascalCase'],
-      prefix: ['is', 'has', 'can', 'should', 'will', 'did'],
+      prefix: booleanPrefixes,
+      // We allow double underscore because of GraphQL type names and some React names.
+      leadingUnderscore: 'allowSingleOrDouble',
+      trailingUnderscore: 'allow',
+      // Ignore `{'Retry-After': retryAfter}` type properties.
+      filter: {
+        regex: `[- ]|^[0-9]+$|${ourShortcuts}`,
+        match: false,
+      },
+    },
+    {
+      selector: 'variable',
+      format: ['strictCamelCase', isTsx && 'StrictPascalCase'].filter(Boolean),
+      // We allow double underscore because of GraphQL type names and some React names.
+      leadingUnderscore: 'allowSingleOrDouble',
+      trailingUnderscore: 'allow',
+      // Ignore `{'Retry-After': retryAfter}` type properties.
+      filter: {
+        regex: `[- ]|^[0-9]+$|${ourShortcuts}`,
+        match: false,
+      },
     },
     {
       // Interface name should not be prefixed with `I`.
