@@ -90,6 +90,7 @@ module.exports = {
     'plugin:promise/recommended',
     'plugin:import/recommended',
     'plugin:unicorn/recommended',
+    'plugin:typescript-sort-keys/recommended',
     'xo',
     'xo-typescript',
     'xo/browser',
@@ -98,7 +99,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:sonarjs/recommended',
+    'plugin:sonarjs/recommended-legacy',
     'plugin:regexp/recommended',
     'plugin:prettier/recommended',
   ],
@@ -112,7 +113,7 @@ module.exports = {
 
     warnOnUnsupportedTypeScriptVersion: true,
   },
-  plugins: ['@typescript-eslint', 'sort-destructure-keys', 'regexp'],
+  plugins: ['@typescript-eslint', 'sort-destructure-keys', 'regexp', 'typescript-sort-keys', 'sonarjs'],
   rules: {
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': 'warn',
@@ -142,32 +143,11 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     'no-throw-literal': 'off',
-    '@typescript-eslint/no-throw-literal': [
-      'error',
-      {
-        allowThrowingAny: false,
-        allowThrowingUnknown: false,
-      },
-    ],
+    '@typescript-eslint/only-throw-error': ['error', { allowThrowingUnknown: true }],
     'prefer-destructuring': 'off',
-    '@typescript-eslint/space-before-blocks': [
-      'error',
-      {
-        VariableDeclarator: {
-          array: false,
-          object: true,
-        },
-        AssignmentExpression: {
-          array: false,
-          object: false,
-        },
-      },
-      {
-        enforceForRenamedProperties: false,
-      },
-    ],
-    'space-before-blocks': 'off',
-    '@typescript-eslint/space-before-blocks': 'error',
+    'prefer-promise-reject-errors': 'off', // enabled typescript equivalent
+    'lines-between-class-members': 'off', // turning off stylistic rules
+    '@typescript-eslint/lines-between-class-members': 'off', // turning off stylistic rules
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
     '@typescript-eslint/sort-type-constituents': 'warn',
@@ -201,9 +181,6 @@ module.exports = {
       },
     ],
     '@typescript-eslint/consistent-type-definitions': 'off',
-
-    // turned off from eslint-config-xo-typescript due to prettier handling this
-    '@typescript-eslint/brace-style': 'off',
     '@typescript-eslint/ban-types': [
       'error',
       {
@@ -261,6 +238,10 @@ module.exports = {
               'If you are expecting the function to accept certain arguments, you should explicitly define the function shape.',
             ].join('\n'),
           },
+          Buffer: {
+            message: 'Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer',
+            suggest: ['Uint8Array'],
+          },
           '[]': "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
           '[[]]':
             "Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
@@ -270,22 +251,12 @@ module.exports = {
         },
       },
     ],
-    '@typescript-eslint/lines-between-class-members': 'off',
-    '@typescript-eslint/member-delimiter-style': 'off',
-    '@typescript-eslint/indent': 'off',
     '@typescript-eslint/object-curly-spacing': 'off',
+    'padding-line-between-statements': 'off',
     '@typescript-eslint/padding-line-between-statements': 'off',
-    '@typescript-eslint/quotes': 'off',
     ...getNamingConventionRule({ isTsx: false }),
 
     camelcase: 'off',
-    'logical-assignment-operators': [
-      'error',
-      'always',
-      {
-        enforceForIfStatements: true,
-      },
-    ],
     'no-async-promise-executor': 'error',
     'no-param-reassign': 'error',
     'no-warning-comments': 'off',
@@ -347,7 +318,6 @@ module.exports = {
     'no-native-reassign': 'warn',
     'no-negated-in-lhs': 'warn',
     'no-new-func': 'warn',
-    'no-new-object': 'warn',
     'no-new-wrappers': 'warn',
     'no-obj-calls': 'warn',
     'no-octal': 'warn',
@@ -427,6 +397,14 @@ module.exports = {
       'stop',
       'toolbar',
       'top',
+      {
+        name: 'atob',
+        message: 'This API is deprecated. Use https://github.com/sindresorhus/uint8array-extras instead.',
+      },
+      {
+        name: 'btoa',
+        message: 'This API is deprecated. Use https://github.com/sindresorhus/uint8array-extras instead.',
+      },
     ],
     'no-unreachable': 'warn',
     'no-unused-labels': 'warn',
@@ -499,13 +477,14 @@ module.exports = {
       },
     ],
 
+    'unicorn/consistent-destructuring': 'error',
     'unicorn/template-indent': 'warn',
     'unicorn/require-post-message-target-origin': 'error',
     'unicorn/filename-case': 'off',
     'unicorn/prevent-abbreviations': [
       'error',
       {
-        ignore: ['param', 'Params', 'err', 'props', 'i18n'],
+        ignore: ['param', 'Params', 'err', 'props', 'i18n', 'ref', 'Ref'],
       },
     ],
     'unicorn/no-null': 'off',
@@ -629,6 +608,8 @@ module.exports = {
         'jest/globals': true,
       },
       rules: {
+        'sonarjs/no-duplicate-string': 'off',
+
         // add jest extension and turn off original rule
         '@typescript-eslint/unbound-method': 'off',
         'jest/unbound-method': 'error',
@@ -639,9 +620,9 @@ module.exports = {
           },
         ],
         'jest/no-commented-out-tests': 'off',
+        'jest/no-conditional-in-test': 'error',
         'jest/no-confusing-set-timeout': 'warn',
         'jest/no-duplicate-hooks': 'error',
-        'jest/no-if': 'error',
         'jest/no-test-return-statement': 'warn',
         'jest/no-large-snapshots': 'error',
         'jest/no-untyped-mock-factory': 'warn',
@@ -652,11 +633,12 @@ module.exports = {
         'jest/prefer-expect-resolves': 'error',
         'jest/prefer-hooks-in-order': 'error',
         'jest/prefer-hooks-on-top': 'error',
+        'jest/prefer-jest-mocked': 'error',
         'jest/prefer-lowercase-title': ['error', { ignoreTopLevelDescribe: true }],
         'jest/prefer-mock-promise-shorthand': 'warn',
         'jest/prefer-spy-on': 'error',
         'jest/prefer-todo': 'error',
-        'jest/require-hook': 'error',
+        'jest/require-hook': 'off',
         'jest/require-to-throw-message': 'error',
         'jest/require-top-level-describe': 'warn',
 
