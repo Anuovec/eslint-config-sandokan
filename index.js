@@ -177,18 +177,15 @@ module.exports = {
     ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
-    'no-throw-literal': 'off',
-    '@typescript-eslint/only-throw-error': ['error', { allowThrowingUnknown: true }],
     'prefer-destructuring': 'off',
-    'prefer-promise-reject-errors': 'off', // enabled typescript equivalent
     'lines-between-class-members': 'off', // turning off stylistic rules
     '@typescript-eslint/lines-between-class-members': 'off', // turning off stylistic rules
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
     '@typescript-eslint/sort-type-constituents': 'warn',
     '@typescript-eslint/no-invalid-void-type': 'warn',
-    '@typescript-eslint/no-unsafe-unary-minus': 'error',
     '@typescript-eslint/no-useless-empty-export': 'warn',
+    'no-restricted-imports': 'off',
     '@typescript-eslint/no-restricted-imports': [
       'error',
       {
@@ -579,6 +576,7 @@ module.exports = {
     'react/jsx-boolean-value': 'error',
     'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
     'react/jsx-curly-brace-presence': 'warn',
+    'react/jsx-props-no-spread-multi': 'error',
 
     'react-hooks/exhaustive-deps': [
       'error',
@@ -604,18 +602,7 @@ module.exports = {
 
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: false }],
 
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-        printWidth: 120,
-        singleQuote: true,
-        trailingComma: 'all',
-      },
-      {
-        usePrettierrc: false,
-      },
-    ],
+    'prettier/prettier': ['error'],
   },
   overrides: [
     {
@@ -625,7 +612,7 @@ module.exports = {
       },
     },
     {
-      files: ['src/ui/**/*.[jt]s?(x)', 'App.tsx'],
+      files: ['src/**/ui/**/*.[jt]s?(x)', 'App.tsx'],
       rules: {
         '@typescript-eslint/no-restricted-imports': [
           'error',
