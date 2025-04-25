@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "noUncheckedIndexedAccess": true,
-    "target": "es2020",
-    "lib": ["dom", "dom.iterable", "es2020"],
+    "target": "es2022",
+    "lib": ["dom", "dom.iterable", "es2022"],
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
@@ -33,6 +33,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "useDefineForClassFields": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }

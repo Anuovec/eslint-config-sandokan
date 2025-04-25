@@ -1,12 +1,12 @@
 {
   "name": "eslint-config-sandokan",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Anuovec/eslint-config-sandokan.git"
   },
   "author": "Tibor The Mad Programmer <tibor.hanesz@gmail.com>",
-  "main": "index.js",
+  "main": "index.mjs",
   "files": [
     "index.js",
     "prettier",
@@ -14,30 +14,30 @@
   ],
   "dependencies": {
     "@tanstack/eslint-plugin-query": "5.51.15",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-config-xo": "0.45.0",
-    "eslint-config-xo-typescript": "5.0.0",
+    "@typescript-eslint/eslint-plugin": "8.31.0",
+    "@typescript-eslint/parser": "8.31.0",
+    "eslint-config-prettier": "10.1.2",
+    "eslint-config-xo": "0.46.0",
+    "eslint-config-xo-typescript": "7.0.0",
     "eslint-plugin-eslint-comments": "3.2.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-jest": "28.8.0",
-    "eslint-plugin-jsx-a11y": "6.9.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "eslint-plugin-promise": "6.2.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jest": "28.11.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-perfectionist": "4.12.2",
+    "eslint-plugin-prettier": "5.2.6",
+    "eslint-plugin-promise": "7.1.0",
     "eslint-plugin-react": "7.35.0",
-    "eslint-plugin-react-hooks": "4.6.2",
+    "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-regexp": "2.6.0",
-    "eslint-plugin-sonarjs": "1.0.4",
+    "eslint-plugin-sonarjs": "3.0.2",
     "eslint-plugin-sort-destructure-keys": "2.0.0",
-    "eslint-plugin-testing-library": "6.3.0",
-    "eslint-plugin-typescript-sort-keys": "^3.2.0",
-    "eslint-plugin-unicorn": "55.0.0",
-    "prettier": "3.3.3",
-    "prettier-plugin-curly": "0.2.2",
-    "prettier-plugin-packagejson": "2.5.1"
+    "eslint-plugin-testing-library": "7.1.1",
+    "eslint-plugin-unicorn": "58.0.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-curly": "0.3.2",
+    "prettier-plugin-packagejson": "2.5.10"
   },
   "peerDependencies": {
-    "eslint": ">=8.57.0"
+    "eslint": ">=9.0.0"
   }
 }
