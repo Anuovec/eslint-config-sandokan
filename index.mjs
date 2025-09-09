@@ -245,15 +245,7 @@ export default [
       'testing-library/prefer-explicit-assert': ['error', { assertion: 'toBeInTheDocument' }],
     },
   },
-  {
-    plugins: {
-      perfectionist,
-    },
-    rules: {
-      'perfectionist/sort-interfaces': 'error',
-      'perfectionist/sort-enums': 'error',
-    },
-  },
+  perfectionist.configs['recommended-alphabetical'],
   prettierPlugin,
   {
     rules: {
@@ -285,8 +277,6 @@ export default [
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       'prefer-destructuring': 'off',
-      'lines-between-class-members': 'off', // turning off stylistic rules
-      '@typescript-eslint/lines-between-class-members': 'off', // turning off stylistic rules
       '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
       '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
       '@typescript-eslint/sort-type-constituents': 'warn',
@@ -324,84 +314,7 @@ export default [
         },
       ],
       '@typescript-eslint/consistent-type-definitions': 'off',
-      //   "error",
-      //   {
-      //     extendDefaults: false,
-      //     types: {
-      //       String: {
-      //         message: "Use `string` instead.",
-      //         fixWith: "string",
-      //       },
-      //       Number: {
-      //         message: "Use `number` instead.",
-      //         fixWith: "number",
-      //       },
-      //       Boolean: {
-      //         message: "Use `boolean` instead.",
-      //         fixWith: "boolean",
-      //       },
-      //       Symbol: {
-      //         message: "Use `symbol` instead.",
-      //         fixWith: "symbol",
-      //       },
-      //       BigInt: {
-      //         message: "Use `bigint` instead.",
-      //         fixWith: "bigint",
-      //       },
-      //       Object: {
-      //         message: [
-      //           'The `Object` type actually means "any non-nullish value", so it is marginally better than `unknown`.',
-      //           '- If you want a type meaning "any object", you probably want `object` instead.',
-      //           '- If you want a type meaning "any value", you probably want `unknown` instead.',
-      //           '- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.',
-      //         ].join("\n"),
-      //         suggest: [
-      //           "Record<string, unknown>",
-      //           "unknown",
-      //           "NonNullable<unknown>",
-      //         ],
-      //       },
-      //       "{}": {
-      //         message: [
-      //           '`{}` actually means "any non-nullish value".',
-      //           '- If you want a type meaning "any object", you probably want `object` instead.',
-      //           '- If you want a type meaning "any value", you probably want `unknown` instead.',
-      //           '- If you want a type meaning "empty object", you probably want `Record<string, never>` instead.',
-      //           '- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.',
-      //         ].join("\n"),
-      //         suggest: [
-      //           "unknown",
-      //           "Record<string, unknown>",
-      //           "NonNullable<unknown>",
-      //         ],
-      //       },
-      //       object: {
-      //         message:
-      //           "The `object` type is hard to use. Use `Record<string, unknown>` instead. See: https://github.com/typescript-eslint/typescript-eslint/pull/848",
-      //         fixWith: "Record<string, unknown>",
-      //       },
-      //       Function: {
-      //         message: [
-      //           "The `Function` type accepts any function-like value.",
-      //           "It provides no type safety when calling the function, which can be a common source of bugs.",
-      //           "It also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.",
-      //           "If you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
-      //         ].join("\n"),
-      //       },
-      //       Buffer: {
-      //         message:
-      //           "Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer",
-      //         suggest: ["Uint8Array"],
-      //       },
-      //       "[]": "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
-      //       "[[]]":
-      //         "Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
-      //       "[[[]]]": "Don't use `[[[]]]`. Use `SomeType[][][]` instead.",
-      //       "[[[[]]]]": "ur drunk 🤡",
-      //       "[[[[[]]]]]": "🦄💥",
-      //     },
-      //   },
-      // ],
+
       '@typescript-eslint/object-curly-spacing': 'off',
       'padding-line-between-statements': 'off',
       '@typescript-eslint/padding-line-between-statements': 'off',
@@ -596,8 +509,8 @@ export default [
       'promise/no-multiple-resolved': 'error',
 
       'import/consistent-type-specifier-style': ['warn', 'prefer-inline'],
-      // "import/newline-after-import": "warn",
-      // "import/no-amd": "error",
+      'import/newline-after-import': 'warn',
+      'import/no-amd': 'error',
       'import/no-anonymous-default-export': 'warn',
       'import/no-empty-named-blocks': 'error',
       'import/no-unresolved': 'off',
@@ -710,21 +623,7 @@ export default [
 
       'sonarjs/elseif-without-else': 'error',
 
-      // 'no-date-parsing/no-date-parsing': 'error',
-
-      'prettier/prettier': [
-        'error',
-        // {
-        //   endOfLine: 'auto',
-        //   printWidth: 120,
-        //   singleQuote: true,
-        //   trailingComma: 'all',
-        //   plugins: ['prettier-plugin-curly', 'prettier-plugin-packagejson'],
-        // },
-        // {
-        //   usePrettierrc: true,
-        // },
-      ],
+      'prettier/prettier': ['error'],
 
       '@stylistic/jsx-quotes': 'off',
       '@stylistic/quotes': 'off',
@@ -765,7 +664,6 @@ export default [
 
       '@typescript-eslint/no-empty-object-type': 'error',
       '@typescript-eslint/no-unsafe-function-type': 'error',
-      '@typescript-eslint/no-wrapper-object-types': 'error',
       'import/no-named-as-default': 'off',
       'import/no-named-as-default-member': 'off',
 
@@ -788,6 +686,11 @@ export default [
 
       // Error on routes that contains word password
       'sonarjs/no-hardcoded-passwords': 'off',
+
+      'perfectionist/sort-imports': 'off',
+      'perfectionist/sort-intersection-types': 'off',
+      'perfectionist/sort-named-imports': 'off',
+      '@typescript-eslint/sort-type-constituents': 'off',
     },
   },
   {

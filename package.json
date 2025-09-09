@@ -38,6 +38,6 @@
     "prettier-plugin-packagejson": "2.5.10"
   },
   "peerDependencies": {
-    "eslint": ">=9.0.0"
+    "eslint": ">=9.35.0"
   }
 }

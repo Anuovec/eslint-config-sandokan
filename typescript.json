@@ -34,6 +34,7 @@
     "strictNullChecks": true,
     "useDefineForClassFields": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "noUncheckedSideEffectImports": true
   }
 }
