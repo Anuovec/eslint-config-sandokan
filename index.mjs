@@ -669,6 +669,8 @@ export default [
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-nested-functions': 'off',
 
+      '@typescript-eslint/no-unsafe-type-assertion': ['error'],
+
       'arrow-body-style': ['error'],
 
       // Auto fix not working in this package and conflicts with `perfectionist`
@@ -677,6 +679,7 @@ export default [
       // Error on routes that contains word password
       'sonarjs/no-hardcoded-passwords': 'off',
 
+      // turning this off because import is sorted by rule import/order
       'perfectionist/sort-imports': 'off',
       'perfectionist/sort-named-imports': 'off',
       '@typescript-eslint/sort-type-constituents': 'off',
