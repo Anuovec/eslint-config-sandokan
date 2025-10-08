@@ -642,7 +642,6 @@ export default [
       '@stylistic/lines-between-class-members': 'off',
       '@stylistic/padding-line-between-statements': 'off',
       '@stylistic/no-mixed-operators': 'off',
-
       '@typescript-eslint/no-unnecessary-type-parameters': 'off',
       '@typescript-eslint/no-deprecated': 'off',
       '@typescript-eslint/no-restricted-types': 'off',
@@ -650,10 +649,7 @@ export default [
       'import/default': 'off',
       'unicorn/no-named-default': 'off',
       '@typescript-eslint/consistent-type-exports': 'off',
-      '@typescript-eslint/no-misused-spread': 'off',
       'prefer-arrow-callback': 'off',
-      '@typescript-eslint/use-unknown-in-catch-callback-variable': 'off',
-      'testing-library/no-node-access': 'off',
 
       'unicorn/prevent-abbreviations': [
         'error',
@@ -669,17 +665,11 @@ export default [
 
       'sonarjs/redundant-type-aliases': 'off',
       'sonarjs/todo-tag': 'off',
-      'sonarjs/deprecation': 'off',
       'sonarjs/function-return-type': 'off',
-      'sonarjs/no-selector-parameter': 'off',
-      'sonarjs/no-redundant-optional': 'off',
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-nested-functions': 'off',
-      'sonarjs/pseudo-random': 'off',
-      'sonarjs/no-misleading-array-reverse': 'off',
-      'sonarjs/cognitive-complexity': 'off',
 
-      'arrow-body-style': 'off',
+      'arrow-body-style': ['error'],
 
       // Auto fix not working in this package and conflicts with `perfectionist`
       '@typescript-eslint/member-ordering': 'off',
@@ -688,7 +678,6 @@ export default [
       'sonarjs/no-hardcoded-passwords': 'off',
 
       'perfectionist/sort-imports': 'off',
-      'perfectionist/sort-intersection-types': 'off',
       'perfectionist/sort-named-imports': 'off',
       '@typescript-eslint/sort-type-constituents': 'off',
     },
