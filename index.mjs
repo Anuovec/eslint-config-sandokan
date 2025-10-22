@@ -647,7 +647,6 @@ export default [
       '@typescript-eslint/no-restricted-types': 'off',
       'unicorn/prefer-global-this': 'off',
       'import/default': 'off',
-      'unicorn/no-named-default': 'off',
       '@typescript-eslint/consistent-type-exports': 'off',
       'prefer-arrow-callback': 'off',
 
