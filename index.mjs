@@ -665,7 +665,6 @@ export default [
 
       'sonarjs/redundant-type-aliases': 'off',
       'sonarjs/todo-tag': 'off',
-      'sonarjs/function-return-type': 'off',
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-nested-functions': 'off',
 
@@ -683,6 +682,8 @@ export default [
       'perfectionist/sort-imports': 'off',
       'perfectionist/sort-named-imports': 'off',
       '@typescript-eslint/sort-type-constituents': 'off',
+
+      'promise/spec-only': 'error',
     },
   },
   {
